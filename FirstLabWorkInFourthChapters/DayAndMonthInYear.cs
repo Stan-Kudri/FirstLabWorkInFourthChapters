@@ -8,37 +8,30 @@ namespace FirstLabWorkInFourthChapters
 {
     public class DayAndMonthInYear
     {
-        private int _day;
-        private bool _leapYear;
+        private readonly int _day;
 
-        public int Day
+        public DayAndMonthInYear(int day) 
         {
-            get { return _day; }
-            set
+            if (day <= 0 || day > 366)
             {
-                if (value <= 0 || value > 366)
-                {
-                    throw new ArgumentException("Параметр не входит в интервал от 0 до 366!");
-                }
-                _leapYear = CheckLeapYear(value);
-                _day = value;
+                throw new ArgumentException("Параметр не входит в интервал от 0 до 366!");
             }
+            _day = day;
         }
 
-        public DayAndMonthInYear(int day)
+        public DayAndMonthInYear(string line) : this (ParseDay(line))
         {
-            Day = day;
-        }
+        }        
 
-        public DayAndMonthInYear(string line)
+        private static int ParseDay(string str)
         {
-            if (line is null)
+            if (str is null)
             {
-                throw new ArgumentNullException(nameof(line));
+                throw new ArgumentNullException(nameof(str));
             }
-            if (int.TryParse(line, out int value))
-            {
-                Day = value;
+            if (int.TryParse(str, out int value))
+            {                
+                return value;
             }
             else
             {
@@ -48,28 +41,8 @@ namespace FirstLabWorkInFourthChapters
 
         public override string ToString()
         {
-            var dateTime = Convert.ToDateTime("01.01.2000");
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.AppendFormat("День и месяц : {0:M}.", dateTime.AddDays(Day - 1))
-                .AppendLine();
-            if (!_leapYear)
-                stringBuilder.AppendLine("Не высокосный год!");
-            else
-                stringBuilder.AppendLine("Высокосный год!");
-            return stringBuilder.ToString();
-        }
-
-        private bool CheckLeapYear(int day)
-        {
-            if (day % 4 == 0)
-            {
-                if (day % 400 != 0 && day % 100 == 0)
-                {
-                    return false;
-                }
-                return true;
-            }
-            return false;
-        }
+            var dateTime = new DateTime(2000,01,01);
+            return String.Format("День и месяц : {0:M}.", dateTime.AddDays(_day - 1));
+        }        
     }
 }
