@@ -18,8 +18,13 @@
 using FirstLabWorkInFourthChapters;
 
 Console.Write("Введите день года, чтобы выяснить месяц и день в нем: Day = ");
-var programm = new DayAndMonthInYear(Console.ReadLine());
+string day = Console.ReadLine();
+var programm = new DayAndMonthInYear(day);
 Console.WriteLine(programm);
-Console.Write("Введите год, чтобы выяснить высокосный он или нет:"); 
-var leapYear = new LeapYear(Console.ReadLine());
+Console.Write("Введите год, чтобы выяснить высокосный он или нет:");
+string year = Console.ReadLine();
+var leapYear = new LeapYear(year);
 Console.WriteLine(leapYear);
+
+var lol = new DayMonthYear(day, year);
+Console.WriteLine(lol);

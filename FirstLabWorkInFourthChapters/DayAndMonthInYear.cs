@@ -9,6 +9,15 @@ namespace FirstLabWorkInFourthChapters
     public class DayAndMonthInYear
     {
         private readonly int _day;
+        
+        public DateTime DateTime
+        {
+            get
+            {
+                var dateTime = new DateTime(2000, 01, 01);
+                return dateTime.AddDays(_day - 1);
+            }
+        }
 
         public DayAndMonthInYear(int day) 
         {

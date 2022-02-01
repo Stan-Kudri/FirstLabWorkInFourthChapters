@@ -10,9 +10,14 @@ namespace FirstLabWorkInFourthChapters
     {
         private readonly int _year;
 
+        public int Year
+        {
+            get { return _year; }
+        }
+
         public LeapYear(int year)
         {
-            if (_year <= 0)
+            if (year <= 0)
                 throw new ArgumentException("Year Greater than Zero!");
             _year = year;
         }
