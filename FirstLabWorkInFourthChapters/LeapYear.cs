@@ -18,7 +18,7 @@ namespace FirstLabWorkInFourthChapters
         public LeapYear(int year)
         {
             if (year <= 0)
-                throw new ArgumentException("Year Greater than Zero!");
+                throw new ArgumentException("Значение года больше нуля!");
             _year = year;
         }
 
@@ -36,32 +36,23 @@ namespace FirstLabWorkInFourthChapters
             {
                 return value;
             }
-            else
-            {
-                throw new ArgumentException("Параметр не подходит для задачи");
-            }
+            throw new ArgumentException("Параметр не подходит для задачи");
         }
 
-        private bool ISLeapYear(int year)
+        private bool IsYearLeap(int year)
         {
             if (year % 4 != 0)
                 return false;
-            else
-            {
-                if (year % 100 != 0 || year % 400 == 0)
-                    return true;
-            }
+            if (year % 400 == 0 || year % 100 != 0)
+                return true;
             return false;
         }
 
         public override string ToString()
         {
-            var stringBuilder = new StringBuilder();
-            if (ISLeapYear(_year))
-                stringBuilder.AppendFormat("{0} считается высокосным годом.", _year);
-            else
-                stringBuilder.AppendFormat("{0} считается не высокосным годом.", _year);
-            return stringBuilder.ToString();
+            if (IsYearLeap(_year))
+                return string.Format("{0} считается высокосным годом.", _year);
+            return string.Format("{0} считается не высокосным годом.", _year);
         }
 
     }
