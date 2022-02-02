@@ -11,34 +11,28 @@ namespace FirstLabWorkInFourthChapters
     {
         private DayAndMonthInYear _dayAndMonth;
         private LeapYear _leapYear;
-        private DateTime _date;
 
-        public DayMonthYear( int day, int year)
+        public DayMonthYear(int day, int year)
         {
             _dayAndMonth = new DayAndMonthInYear(day);
             _leapYear = new LeapYear(year);
-            CreatingNewDate();
         }
 
-        public DayMonthYear( string dayLine, string yearLine)
+        public DayMonthYear(string dayLine, string yearLine)
         {
             _dayAndMonth = new DayAndMonthInYear(dayLine);
             _leapYear = new LeapYear(yearLine);
-            CreatingNewDate();
         }
 
-        private void CreatingNewDate()
+        private DateTime CreatingNewDate()
         {
             DateTime dateTime = _dayAndMonth.DateTime;
-            _date = new DateTime(_leapYear.Year, dateTime.Month, dateTime.Day);
+            return new DateTime(_leapYear.Year, dateTime.Month, dateTime.Day);
         }
 
         public override string ToString()
-        {
-            var stringBuilder = new StringBuilder();
-            stringBuilder.AppendFormat("Введенный дата {0:M} {1}", _date, _leapYear);
-            return stringBuilder.ToString();
+        {            
+            return string.Format("Введенный дата {0:M} {1}", CreatingNewDate(), _leapYear);
         }
-
     }
 }
