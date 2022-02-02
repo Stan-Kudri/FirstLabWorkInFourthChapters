@@ -43,16 +43,13 @@ namespace FirstLabWorkInFourthChapters
         {
             if (year % 4 != 0)
                 return false;
-            if (year % 400 == 0 || year % 100 != 0)
-                return true;
-            return false;
+            return year % 400 == 0 || year % 100 != 0;
         }
 
         public override string ToString()
         {
-            if (IsYearLeap(_year))
-                return string.Format("{0} считается высокосным годом.", _year);
-            return string.Format("{0} считается не высокосным годом.", _year);
+            var formatMessage = IsYearLeap(_year) ? "{0} считается высокосным годом." : "{0} считается не высокосным годом.";
+            return string.Format(formatMessage, _year);
         }
 
     }

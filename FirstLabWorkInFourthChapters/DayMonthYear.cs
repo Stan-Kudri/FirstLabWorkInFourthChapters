@@ -24,15 +24,14 @@ namespace FirstLabWorkInFourthChapters
             _leapYear = new LeapYear(yearLine);
         }
 
-        private DateTime CreatingNewDate()
-        {
-            DateTime dateTime = _dayAndMonth.DateTime;
-            return new DateTime(_leapYear.Year, dateTime.Month, dateTime.Day);
-        }
-
         public override string ToString()
         {            
-            return string.Format("Введенный дата {0:M} {1}", CreatingNewDate(), _leapYear);
+            return string.Format("Введенный дата {0:M} {1}",
+                new DateTime(
+                    _leapYear.Year,
+                    _dayAndMonth.DateTime.Month,
+                    _dayAndMonth.DateTime.Day),
+                _leapYear);
         }
     }
 }
